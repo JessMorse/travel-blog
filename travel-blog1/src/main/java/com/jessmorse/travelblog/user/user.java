@@ -1,13 +1,19 @@
 package com.jessmorse.travelblog.user;
 
-public class user {
+public class User {
     private int userId;
     private String userName;
     private String password;
     private String email;
 
-    public user(int userId, String userName, String password, String email) {
+    public User(int userId, String userName, String password, String email) {
         this.userId = userId;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+    }
+
+    public User(String userName, String password, String email) {
         this.userName = userName;
         this.password = password;
         this.email = email;
