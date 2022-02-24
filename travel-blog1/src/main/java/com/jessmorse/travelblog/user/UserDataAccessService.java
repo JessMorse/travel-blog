@@ -1,17 +1,21 @@
 package com.jessmorse.travelblog.user;
 
+import org.flywaydb.core.internal.jdbc.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+//import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 @Repository("user")
 public class UserDataAccessService implements UserDAO {
+    private final JdbcTemplate jdbcTemplate;
 
-    //@Autowired
     //Create instance of rowMapper
+    @Autowired
+    UserRowMapper autowiredRowMapper;
     //TODO: create rowMapper
 
     private JdbcTemplate jdbctemplate;
@@ -25,7 +29,7 @@ public class UserDataAccessService implements UserDAO {
                 INSERT INTO users(user_name, email, user_password)
                 VALUES (?, ?, ?);""";
 
-        jdbcTemplate.update.(sql, user.getUserName(), user.getEmail(), user.getPassword());
+        jdbcTemplate.update(sql, user.getUserName(), user.getEmail(), user.getPassword());
 
     }
 
@@ -41,7 +45,7 @@ public class UserDataAccessService implements UserDAO {
     public Optional<User> getUserById(long id) {
         String sql = """
                 SELECT * FROM users WHERE id = ?;""";
-        return jdbcTemplate.query(sql, id).stream().findAny();
+        return jdbcTemplate.query(sql,autowiredRowMapper, id).stream().findAny();
     }
 
     @Override
@@ -52,9 +56,9 @@ public class UserDataAccessService implements UserDAO {
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<User> getAllUsers(){
         String sql = """
                 SELECT * FROM users;""";
-        return ;
+        return jdbcTemplate.query(sql, autowiredRowMapper);
     }
 }
