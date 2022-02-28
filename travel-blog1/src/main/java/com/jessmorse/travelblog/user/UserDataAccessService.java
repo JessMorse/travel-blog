@@ -52,7 +52,7 @@ public class UserDataAccessService implements UserDAO {
     public Void updateUser(long userId, User user) {
         String sql = """
                 UPDATE users SET user_name = ?, email = ?, user_password = ?;""";
-        return jdbcTemplate.update(sql, user.getUserName(), user.getEmail(), user.getPassword());
+        jdbcTemplate.update(sql, user.getUserName(), user.getEmail(), user.getPassword());
     }
 
     @Override
