@@ -7,7 +7,7 @@ public interface UserDAO {
     void addUserToDatabase(User user);
     void removeUserFromDatabase(long userId);
     Optional<User> getUserById(long id);
-    Void updateUser(long userId, User user);
+    void updateUser(long userId, User user);
     List<User> getAllUsers();
 
 }
