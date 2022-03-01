@@ -1,6 +1,6 @@
 package com.jessmorse.travelblog.post;
 
-public class post {
+public class Post {
     private long postId;
     private long userId;
     private String postBody;
@@ -9,7 +9,7 @@ public class post {
     private String topTip;
     private int cost;
 
-    public post(long postId, long userId, String postBody, String country, int rating, String topTip, int cost) {
+    public Post(long postId, long userId, String postBody, String country, int rating, String topTip, int cost) {
         this.postId = postId;
         this.userId = userId;
         this.postBody = postBody;
@@ -19,7 +19,7 @@ public class post {
         this.cost = cost;
     }
 
-    public post(long userId, String postBody, String country, int rating, String topTip, int cost) {
+    public Post(long userId, String postBody, String country, int rating, String topTip, int cost) {
         this.userId = userId;
         this.postBody = postBody;
         Country = country;
