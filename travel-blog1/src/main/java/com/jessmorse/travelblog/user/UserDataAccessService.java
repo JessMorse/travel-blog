@@ -1,24 +1,21 @@
 package com.jessmorse.travelblog.user;
 
-import org.flywaydb.core.internal.jdbc.JdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 @Repository("user")
 public class UserDataAccessService implements UserDAO {
-    private final JdbcTemplate jdbcTemplate;
 
     //Create instance of rowMapper
     @Autowired
     UserRowMapper autowiredRowMapper;
     //TODO: create rowMapper
 
-    private JdbcTemplate jdbctemplate;
+    private JdbcTemplate jdbcTemplate;
+
     public UserDataAccessService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -49,10 +46,10 @@ public class UserDataAccessService implements UserDAO {
     }
 
     @Override
-    public Void updateUser(long userId, User user) {
+    public void updateUser(long userId, User user) {
         String sql = """
-                UPDATE users SET user_name = ?, email = ?, user_password = ?;""";
-        jdbcTemplate.update(sql, user.getUserName(), user.getEmail(), user.getPassword());
+                UPDATE users SET user_name = ?, email = ?, user_password = ? WHERE  user_id = ?;""";
+        jdbcTemplate.update(sql, user.getUserName(), user.getEmail(), user.getPassword(), userId);
     }
 
     @Override

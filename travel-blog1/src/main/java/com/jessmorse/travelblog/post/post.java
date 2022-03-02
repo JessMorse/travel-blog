@@ -1,5 +1,7 @@
 package com.jessmorse.travelblog.post;
 
+import java.time.LocalDate;
+
 public class Post {
     private long postId;
     private long userId;
@@ -8,8 +10,9 @@ public class Post {
     private int rating;
     private String topTip;
     private int cost;
+    private LocalDate datePosted;
 
-    public Post(long postId, long userId, String postBody, String country, int rating, String topTip, int cost) {
+    public Post(long postId, long userId, String postBody, String country, int rating, String topTip, int cost, LocalDate datePosted) {
         this.postId = postId;
         this.userId = userId;
         this.postBody = postBody;
@@ -17,15 +20,17 @@ public class Post {
         this.rating = rating;
         this.topTip = topTip;
         this.cost = cost;
+        this.datePosted = datePosted;
     }
 
-    public Post(long userId, String postBody, String country, int rating, String topTip, int cost) {
+    public Post(long userId, String postBody, String country, int rating, String topTip, int cost, LocalDate datePosted) {
         this.userId = userId;
         this.postBody = postBody;
         Country = country;
         this.rating = rating;
         this.topTip = topTip;
         this.cost = cost;
+        this.datePosted = datePosted;
     }
 
     public long getPostId() {
@@ -84,9 +89,17 @@ public class Post {
         this.cost = cost;
     }
 
+    public LocalDate getDatePosted() {
+        return datePosted;
+    }
+
+    public void setDatePosted(LocalDate datePosted) {
+        this.datePosted = datePosted;
+    }
+
     @Override
     public String toString() {
-        return "post{" +
+        return "Post{" +
                 "postId=" + postId +
                 ", userId=" + userId +
                 ", postBody='" + postBody + '\'' +
@@ -94,6 +107,7 @@ public class Post {
                 ", rating=" + rating +
                 ", topTip='" + topTip + '\'' +
                 ", cost=" + cost +
+                ", datePosted=" + datePosted +
                 '}';
     }
 }
