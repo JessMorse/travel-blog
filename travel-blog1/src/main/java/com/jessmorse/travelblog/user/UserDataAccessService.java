@@ -1,18 +1,19 @@
 package com.jessmorse.travelblog.user;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-@Repository("user")
+@Qualifier("User")
+@Repository
 public class UserDataAccessService implements UserDAO {
 
     //Create instance of rowMapper
     @Autowired
     UserRowMapper autowiredRowMapper;
-    //TODO: create rowMapper
 
     private JdbcTemplate jdbcTemplate;
 

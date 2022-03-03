@@ -27,6 +27,7 @@ public class PostService {
 
     public List<Post> getAllPosts() {return postDAO.getAllPosts();};
 
+    //public int getCountryAverage(String country) {postDAO.getCountryAverageRating(country);};
 
 
 }

@@ -34,5 +34,8 @@ public class PostController {
     @GetMapping
     public List<Post> getAllPosts() {return postService.getAllPosts();};
 
+//    @GetMapping
+//    public int getCountryAverageRating() {return postService.getCountryAverageRating();};
+
 
 }

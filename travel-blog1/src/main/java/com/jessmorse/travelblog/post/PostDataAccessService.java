@@ -2,6 +2,7 @@ package com.jessmorse.travelblog.post;
 
 import com.jessmorse.travelblog.user.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 import static java.time.LocalDate.now;
 
+@Qualifier("Post")
 @Repository
 public class PostDataAccessService implements PostDAO {
 
@@ -61,4 +63,13 @@ public class PostDataAccessService implements PostDAO {
                 SELECT * FROM blogposts ORDER BY date_posted DESC;""";
         return jdbcTemplate.query(sql, autowiredRowMapper);
     }
+
+/*
+    @Override
+    public int getCountryAverageRating(String country) {
+        String sql = """
+                SELECT AVG(rating) FROM blogposts WHERE country = ?;""";
+        return jdbcTemplate.query(sql, country);
+    }
+*/
 }
