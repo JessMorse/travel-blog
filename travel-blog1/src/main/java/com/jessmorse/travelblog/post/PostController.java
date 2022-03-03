@@ -1,14 +1,13 @@
 package com.jessmorse.travelblog.post;
 
-import com.jessmorse.travelblog.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RequestMapping("/post")
 @RestController
+@RequestMapping("/post")
 public class PostController {
 
     private PostService postService;
