@@ -3,7 +3,6 @@ package com.jessmorse.travelblog.post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
-import java.util.LocalDate;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -20,7 +19,7 @@ public class PostRowMapper implements RowMapper<Post> {
                 rs.getInt("rating"),
                 rs.getString("top_tip"),
                 rs.getInt("trip_cost"),
-                rs.getLocalDate("date_posted")
+                rs.getDate("date_posted").toLocalDate()
         );
         return post;
     }
