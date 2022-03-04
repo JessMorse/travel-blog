@@ -10,9 +10,9 @@ import java.util.Optional;
 @Service
 public class PostService {
 
-    private final PostDAO postDAO;
+    private PostDAO postDAO;
 
-    @Autowired
+    //@Autowired
     public PostService(@Qualifier("Post") PostDAO postDAO){
         this.postDAO = postDAO;
     }

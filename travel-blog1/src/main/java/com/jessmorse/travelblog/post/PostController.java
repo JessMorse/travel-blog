@@ -12,7 +12,7 @@ public class PostController {
 
     private PostService postService;
 
-    @Autowired
+   // @Autowired
     public PostController(PostService postService) {this.postService = postService;};
 
     @PostMapping
