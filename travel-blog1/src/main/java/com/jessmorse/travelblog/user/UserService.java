@@ -11,9 +11,9 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private final UserDAO userDAO;
+    private UserDAO userDAO;
 
-    @Autowired
+    //@Autowired
     public UserService(@Qualifier("User") UserDAO userDAO){
         this.userDAO = userDAO;
     }

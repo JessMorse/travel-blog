@@ -13,6 +13,7 @@ CREATE TABLE blogposts(
     rating INTEGER,
     top_tip VARCHAR(255),
     trip_cost INTEGER,
+    date_posted DATE,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
