@@ -44,7 +44,7 @@ public class PostDataAccessService implements PostDAO {
     @Override
     public Optional<Post> getPostById(long postId) {
         String sql = """
-                SELECT * FROM blogposts WHERE postId = ? ;""";
+                SELECT * FROM blogposts WHERE post_id = ? ;""";
         return jdbcTemplate.query(sql, autowiredRowMapper, postId).stream().findAny();
     }
 

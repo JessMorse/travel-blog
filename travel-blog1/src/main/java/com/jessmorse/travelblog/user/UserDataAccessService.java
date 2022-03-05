@@ -42,7 +42,7 @@ public class UserDataAccessService implements UserDAO {
     @Override
     public Optional<User> getUserById(long id) {
         String sql = """
-                SELECT * FROM users WHERE id = ?;""";
+                SELECT * FROM users WHERE user_id = ?;""";
         return jdbcTemplate.query(sql,autowiredRowMapper, id).stream().findAny();
     }
 
