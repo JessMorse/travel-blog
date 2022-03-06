@@ -10,4 +10,6 @@ public interface PostDAO {
     void updatePost(Post post);
     List<Post> getAllPosts();
     //int getCountryAverageRating(String country);
+    List<Post> getPostsByCountry(String country);
+    List<Post> getPostsByUser(long userId);
 };

@@ -27,7 +27,10 @@ public class PostService {
 
     public List<Post> getAllPosts() {return postDAO.getAllPosts();};
 
-    //public int getCountryAverage(String country) {postDAO.getCountryAverageRating(country);};
+    //public int getCountryAverageRating(String country) {return postDAO.getCountryAverageRating(country);};
 
+    public List<Post> getPostsByCountry(String country) {return postDAO.getPostsByCountry(country);};
+
+    public List<Post> getPostsByUser(long userId) {return postDAO.getPostsByUser(userId);};
 
 }

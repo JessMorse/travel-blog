@@ -23,6 +23,9 @@ public class Post {
         this.datePosted = datePosted;
     }
 
+    public Post() {
+    }
+
     public Post(long userId, String postBody, String country, int rating, String topTip, int cost, LocalDate datePosted) {
         this.userId = userId;
         this.postBody = postBody;

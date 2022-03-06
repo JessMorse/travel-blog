@@ -34,8 +34,16 @@ public class PostController {
     @GetMapping
     public List<Post> getAllPosts() {return postService.getAllPosts();};
 
-//    @GetMapping
-//    public int getCountryAverageRating() {return postService.getCountryAverageRating();};
+    //@GetMapping
+    //public int getCountryAverageRating(String country) {return postService.getCountryAverageRating(country);};
 
+    @GetMapping("/country/{id}")
+    public List<Post> getPostsByCountry(@PathVariable("id") String country) {
+        return postService.getPostsByCountry(country);
+    };
 
+    @GetMapping("/user/{id}")
+    List<Post> getPostsByUser(@PathVariable("id") long userId) {
+        return postService.getPostsByUser(userId);
+    };
 }
