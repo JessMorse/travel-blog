@@ -29,13 +29,22 @@ public class PostController {
 
 
     @PutMapping("{id}")
-    public void updatePost(Post post){postService.updatePost(post);};
+    public void updatePost(@PathVariable("id") long postId, @RequestBody Post post){
+        postService.updatePost(postId, post);};
 
     @GetMapping
     public List<Post> getAllPosts() {return postService.getAllPosts();};
 
-//    @GetMapping
-//    public int getCountryAverageRating() {return postService.getCountryAverageRating();};
+    //@GetMapping
+    //public int getCountryAverageRating(String country) {return postService.getCountryAverageRating(country);};
 
+    @GetMapping("/country/{id}")
+    public List<Post> getPostsByCountry(@PathVariable("id") String country) {
+        return postService.getPostsByCountry(country);
+    };
 
+    @GetMapping("/user/{id}")
+    List<Post> getPostsByUser(@PathVariable("id") long userId) {
+        return postService.getPostsByUser(userId);
+    };
 }

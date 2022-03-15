@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class UserService {
@@ -19,7 +21,19 @@ public class UserService {
     }
 
     public void addUserToDatabase(User user){
-        userDAO.addUserToDatabase(user);
+
+        //check email is valid
+//        if(user.getEmail()==null) {
+//            throw new ResourceNotFound("Please provide email address");
+//        }
+//        String email = user.getEmail();
+//        boolean b = isValidEmail(email);
+//        if(b==false){
+//            throw new ResourceNotFound("Email address not valid");
+//        }else if {
+
+            userDAO.addUserToDatabase(user);
+        //}
     }
 
 
@@ -50,5 +64,23 @@ public class UserService {
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
     };
+
+
+    //function to check if email is valid
+//    public static boolean isValidEmail(String email) {
+//        //regex to check email format.
+//        String regex = "^[(a-zA-Z-0-9-\\_\\+\\.)]+@[(a-z-A-z)]+\\.[(a-zA-z)]{2,3}$";
+//        Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+//
+//        //if email null return false
+//        if (email == null) {
+//            return false;
+//        }
+//
+//        //matcher() finds matching between email and regex
+//        Matcher m = p.matcher(email);
+//        return m.matches();
+//    }
+//"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$"
 }
 

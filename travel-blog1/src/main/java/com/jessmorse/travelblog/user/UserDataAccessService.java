@@ -24,10 +24,10 @@ public class UserDataAccessService implements UserDAO {
     @Override
     public void addUserToDatabase(User user) {
         String sql = """
-                INSERT INTO users(user_name, email, user_password)
-                VALUES (?, ?, ?);""";
+                INSERT INTO users(user_id, user_name, email, user_password)
+                VALUES (?, ?, ?, ?);""";
 
-        jdbcTemplate.update(sql, user.getUserName(), user.getEmail(), user.getPassword());
+        jdbcTemplate.update(sql,user.getUserId(), user.getUserName(), user.getEmail(), user.getPassword());
 
     }
 
