@@ -29,7 +29,8 @@ public class PostController {
 
 
     @PutMapping("{id}")
-    public void updatePost(Post post){postService.updatePost(post);};
+    public void updatePost(@PathVariable("id") long postId, @RequestBody Post post){
+        postService.updatePost(postId, post);};
 
     @GetMapping
     public List<Post> getAllPosts() {return postService.getAllPosts();};

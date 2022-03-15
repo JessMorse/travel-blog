@@ -23,7 +23,7 @@ public class PostService {
 
     public Optional<Post> getPostById(long postId) { return postDAO.getPostById(postId);};
 
-    public void updatePost(Post post) {postDAO.updatePost(post);};
+    public void updatePost(long postId, Post post) {postDAO.updatePost(postId, post);};
 
     public List<Post> getAllPosts() {return postDAO.getAllPosts();};
 

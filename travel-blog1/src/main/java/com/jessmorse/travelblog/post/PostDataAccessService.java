@@ -1,11 +1,12 @@
 package com.jessmorse.travelblog.post;
 
-import com.jessmorse.travelblog.user.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,9 @@ public class PostDataAccessService implements PostDAO {
                 INSERT INTO blogposts(
                                       post_id, user_id, post_body, country, rating, top_tip, trip_cost, date_posted)
                                       VALUES(?,?,?,?,?,?,?,?);""";
-        jdbcTemplate.update(sql,post.getPostId(),post.getUserId(), post.getPostBody(),post.getCountry(), post.getRating(), post.getTopTip(),post.getCost(), post.getDatePosted());
+        jdbcTemplate.update(sql,post.getPostId(),post.getUserId(),
+                post.getPostBody(),post.getCountry(), post.getRating(),
+                post.getTopTip(),post.getCost(), LocalDate.now());
 
     }
 
@@ -49,12 +52,13 @@ public class PostDataAccessService implements PostDAO {
     }
 
     @Override
-    public void updatePost(Post post) {
+    public void updatePost(long postId, Post post) {
         String sql = """
                 UPDATE blogposts SET
                 post_body = ?, country = ?, rating = ?, top_tip = ?, trip_cost = ?
                 WHERE user_id = ?;""";
-        jdbcTemplate.update(sql, post.getPostBody(), post.getCountry(), post.getRating(), post.getTopTip(), post.getCost(), post.getPostId());
+        jdbcTemplate.update(sql, post.getPostBody(), post.getCountry(),
+                post.getRating(), post.getTopTip(), post.getCost(), postId);
     }
 
     @Override
@@ -83,7 +87,12 @@ public class PostDataAccessService implements PostDAO {
 //    public int getCountryAverageRating(String country) {
 //        String sql = """
 //                SELECT AVG(rating) FROM blogposts GROUP BY country WHERE country = ? ;""";
-//        return jdbcTemplate.query(sql, country);
+//        return jdbcTemplate.queryForObject(sql, country,Double.class);
 //    }
 
+//    public LocalDate getCurrentDate() {
+//        LocalDate date = LocalDate.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//        LocalDate currentDate = date.format(formatter);
+//    }
 }
