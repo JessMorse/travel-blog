@@ -40,7 +40,7 @@ public class PostDataAccessService implements PostDAO {
     @Override
     public void deletePost(long postId) {
         String sql = """
-                DELETE * FROM blogposts WHERE post_id = ?;""";
+                DELETE FROM blogposts WHERE post_id = ?;""";
         jdbcTemplate.update(sql,postId);
     }
 
@@ -56,7 +56,7 @@ public class PostDataAccessService implements PostDAO {
         String sql = """
                 UPDATE blogposts SET
                 post_body = ?, country = ?, rating = ?, top_tip = ?, trip_cost = ?
-                WHERE user_id = ?;""";
+                WHERE post_id = ?;""";
         jdbcTemplate.update(sql, post.getPostBody(), post.getCountry(),
                 post.getRating(), post.getTopTip(), post.getCost(), postId);
     }
@@ -78,7 +78,7 @@ public class PostDataAccessService implements PostDAO {
     @Override
     public List<Post> getPostsByUser(long userId) {
         String sql = """
-                SELECT * FROM blogposts WHERE userId = ? ORDER BY date_posted DESC;""";
+                SELECT * FROM blogposts WHERE user_id = ? ORDER BY date_posted DESC;""";
         return jdbcTemplate.query(sql, autowiredRowMapper, userId);
     }
 
@@ -90,9 +90,5 @@ public class PostDataAccessService implements PostDAO {
 //        return jdbcTemplate.queryForObject(sql, country,Double.class);
 //    }
 
-//    public LocalDate getCurrentDate() {
-//        LocalDate date = LocalDate.now();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-//        LocalDate currentDate = date.format(formatter);
-//    }
+
 }
