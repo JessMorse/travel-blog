@@ -55,7 +55,6 @@ public class CommentDataAccessService implements CommentDAO {
     @Override
     public List<Comment> getCommentsByUser (long userId){
         String sql = """
-                
                 SELECT * FROM comments WHERE user_id = ?;""";
         return jdbcTemplate.query(sql, autowiredRowMapper, userId);
     };

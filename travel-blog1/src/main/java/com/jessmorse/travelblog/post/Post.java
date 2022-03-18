@@ -11,8 +11,9 @@ public class Post {
     private String topTip;
     private int cost;
     private LocalDate datePosted;
+    private String userName;
 
-    public Post(long postId, long userId, String postBody, String country, int rating, String topTip, int cost, LocalDate datePosted) {
+    public Post(long postId, long userId, String postBody, String country, int rating, String topTip, int cost, LocalDate datePosted, String userName) {
         this.postId = postId;
         this.userId = userId;
         this.postBody = postBody;
@@ -21,19 +22,7 @@ public class Post {
         this.topTip = topTip;
         this.cost = cost;
         this.datePosted = datePosted;
-    }
-
-    public Post() {
-    }
-
-    public Post(long userId, String postBody, String country, int rating, String topTip, int cost, LocalDate datePosted) {
-        this.userId = userId;
-        this.postBody = postBody;
-        Country = country;
-        this.rating = rating;
-        this.topTip = topTip;
-        this.cost = cost;
-        this.datePosted = datePosted;
+        this.userName = userName;
     }
 
     public long getPostId() {
@@ -100,6 +89,14 @@ public class Post {
         this.datePosted = datePosted;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -111,6 +108,7 @@ public class Post {
                 ", topTip='" + topTip + '\'' +
                 ", cost=" + cost +
                 ", datePosted=" + datePosted +
+                ", userName='" + userName + '\'' +
                 '}';
     }
 }

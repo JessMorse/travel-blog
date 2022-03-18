@@ -1,6 +1,8 @@
 package com.jessmorse.travelblog.user;
 
+import com.jessmorse.travelblog.comment.CommentDAO;
 import com.jessmorse.travelblog.exceptions.ResourceNotFound;
+import com.jessmorse.travelblog.post.PostDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -14,10 +16,15 @@ import java.util.regex.Pattern;
 public class UserService {
 
     private UserDAO userDAO;
+    private CommentDAO commentDAO;
+    private PostDAO postDAO;
 
     //@Autowired
-    public UserService(@Qualifier("User") UserDAO userDAO){
+    public UserService(@Qualifier("User") UserDAO userDAO,
+                       @Qualifier("comment") CommentDAO commentDAO, @Qualifier("Post") PostDAO postDAO){
         this.userDAO = userDAO;
+        this.commentDAO = commentDAO;
+        this.postDAO = postDAO;
     }
 
     public void addUserToDatabase(User user){
@@ -42,6 +49,8 @@ public class UserService {
             throw new ResourceNotFound("User with this id does not exist");
         }
         userDAO.removeUserFromDatabase(id);
+        //commentDAO.deleteCommentByUser(id);
+        //postDAO.deletePostByUser(id);
     }
 
 
