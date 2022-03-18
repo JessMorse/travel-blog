@@ -6,21 +6,18 @@ public class Comment {
     private long postId;
     private long userId;
     private String comment;
-    private Boolean liked;
 
-    public Comment(long commentId, long postId, long userId, String comment, Boolean liked) {
+    public Comment(long commentId, long postId, long userId, String comment) {
         this.commentId = commentId;
         this.postId = postId;
         this.userId = userId;
         this.comment = comment;
-        this.liked = liked;
     }
 
     public Comment(long postId, long userId, String comment, Boolean liked) {
         this.postId = postId;
         this.userId = userId;
         this.comment = comment;
-        this.liked = liked;
     }
 
     public long getCommentId() {
@@ -55,14 +52,6 @@ public class Comment {
         this.comment = comment;
     }
 
-    public Boolean getLiked() {
-        return liked;
-    }
-
-    public void setLiked(Boolean liked) {
-        this.liked = liked;
-    }
-
     @Override
     public String toString() {
         return "Comment{" +
@@ -70,7 +59,6 @@ public class Comment {
                 ", postId=" + postId +
                 ", userId=" + userId +
                 ", comment='" + comment + '\'' +
-                ", liked=" + liked +
                 '}';
     }
 }

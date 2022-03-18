@@ -15,8 +15,7 @@ public class CommentRowMapper implements RowMapper<Comment> {
             rs.getInt("comment_id"),
             rs.getInt("user_id"),
             rs.getInt("post_id"),
-            rs.getString("post_comment"),
-            rs.getBoolean("liked")
+            rs.getString("post_comment")
         );
         return comment;
     }

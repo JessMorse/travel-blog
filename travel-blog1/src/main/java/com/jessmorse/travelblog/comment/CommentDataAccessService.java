@@ -24,11 +24,11 @@ public class CommentDataAccessService implements CommentDAO {
     @Override
     public void addComment(Comment comment){
         String sql = """
-                INSERT INTO comments(user_id, post_id, post_comment, liked)
-                VALUES (?, ?, ?, ?);
+                INSERT INTO comments(user_id, post_id, post_comment)
+                VALUES (?, ?, ?);
                 """;
         jdbcTemplate.update(sql, comment.getUserId(), comment.getPostId(),
-                comment.getComment(), comment.getLiked());
+                comment.getComment());
     };
 
     @Override
@@ -41,8 +41,8 @@ public class CommentDataAccessService implements CommentDAO {
     @Override
     public void updateComment (long commentId, Comment comment){
         String sql = """
-                UPDATE comments SET post_comment = ?, liked = ? WHERE comment_id = ?;""";
-        jdbcTemplate.update(sql, comment.getComment(), comment.getLiked(), commentId);
+                UPDATE comments SET post_comment = ? WHERE comment_id = ?;""";
+        jdbcTemplate.update(sql, comment.getComment(), commentId);
     };
 
     @Override
