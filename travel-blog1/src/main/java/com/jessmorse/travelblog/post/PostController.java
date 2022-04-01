@@ -38,9 +38,9 @@ public class PostController {
     public List<Post> getAllPosts() {
         return postService.getAllPosts();};
 
-//    @GetMapping
-//    public double getCountryAverageRating(String country) {
-//        return postService.getCountryAverageRating(country);};
+    @GetMapping("/rating/{country}")
+    public double getCountryAverageRating(@PathVariable("country")String country) {
+        return postService.getCountryAverageRating(country);};
 
     @GetMapping("/country/{id}")
     public List<Post> getPostsByCountry(@PathVariable("id") String country) {

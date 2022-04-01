@@ -88,12 +88,11 @@ public class PostDataAccessService implements PostDAO {
     }
 
 
-//    @Override
-//    public double getCountryAverageRating(String country) {
-//        String sql = """
-//                SELECT AVG(rating) FROM blogposts WHERE country = ? ;""";
-//        BigDecimal result = jdbcTemplate.queryForObject(sql,country,  BigDecimal.class);
-//        return result.doubleValue();
-//    }
+    @Override
+    public double getCountryAverageRating(String country) {
+        String sql = """
+                SELECT AVG(rating) FROM blogposts WHERE country = ? ;""";
+        return jdbcTemplate.queryForObject(sql,  double.class, country);
+    }
 
 }
