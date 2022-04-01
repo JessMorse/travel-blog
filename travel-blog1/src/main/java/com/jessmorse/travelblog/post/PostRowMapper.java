@@ -19,7 +19,8 @@ public class PostRowMapper implements RowMapper<Post> {
                 rs.getInt("rating"),
                 rs.getString("top_tip"),
                 rs.getInt("trip_cost"),
-                rs.getDate("date_posted").toLocalDate()
+                rs.getDate("date_posted").toLocalDate(),
+                rs.getString("user_name")
         );
         return post;
     }

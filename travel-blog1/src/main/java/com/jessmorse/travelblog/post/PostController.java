@@ -35,10 +35,12 @@ public class PostController {
         postService.updatePost(postId, post);};
 
     @GetMapping
-    public List<Post> getAllPosts() {return postService.getAllPosts();};
+    public List<Post> getAllPosts() {
+        return postService.getAllPosts();};
 
-    //@GetMapping
-    //public int getCountryAverageRating(String country) {return postService.getCountryAverageRating(country);};
+    @GetMapping("/rating/{country}")
+    public double getCountryAverageRating(@PathVariable("country")String country) {
+        return postService.getCountryAverageRating(country);};
 
     @GetMapping("/country/{id}")
     public List<Post> getPostsByCountry(@PathVariable("id") String country) {
@@ -47,6 +49,7 @@ public class PostController {
 
     @GetMapping("/user/{id}")
     List<Post> getPostsByUser(@PathVariable("id") long userId) {
+
         return postService.getPostsByUser(userId);
     };
 }

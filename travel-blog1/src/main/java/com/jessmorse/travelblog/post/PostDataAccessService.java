@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -20,6 +21,7 @@ public class PostDataAccessService implements PostDAO {
     PostRowMapper autowiredRowMapper;
 
     private JdbcTemplate jdbcTemplate;
+    private BigDecimal ConstFold;
 
     public PostDataAccessService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -64,31 +66,33 @@ public class PostDataAccessService implements PostDAO {
     @Override
     public List<Post> getAllPosts() {
         String sql = """
-                SELECT * FROM blogposts ORDER BY date_posted DESC;""";
+                SELECT post_id, blogposts.user_id, post_body, country, rating, top_tip, trip_cost, date_posted, users.user_name
+                FROM blogposts JOIN users ON blogposts.user_id=users.user_id ORDER BY date_posted DESC;""";
         return jdbcTemplate.query(sql, autowiredRowMapper);
     }
 
     @Override
     public List<Post> getPostsByCountry(String country) {
         String sql = """
-                SELECT * FROM blogposts WHERE country = ? ORDER BY date_posted DESC;""";
+                SELECT post_id, blogposts.user_id, post_body, country, rating, top_tip, trip_cost, date_posted, users.user_name
+                 FROM blogposts JOIN users ON blogposts.user_id=users.user_id  WHERE country = ? ORDER BY date_posted DESC;""";
         return jdbcTemplate.query(sql, autowiredRowMapper, country);
     }
 
     @Override
     public List<Post> getPostsByUser(long userId) {
         String sql = """
-                SELECT * FROM blogposts WHERE user_id = ? ORDER BY date_posted DESC;""";
+                SELECT post_id, blogposts.user_id, post_body, country, rating, top_tip, trip_cost, date_posted, users.user_name
+                 FROM blogposts JOIN users ON blogposts.user_id=users.user_id WHERE user_id = ? ORDER BY date_posted DESC;""";
         return jdbcTemplate.query(sql, autowiredRowMapper, userId);
     }
 
 
-//    @Override
-//    public int getCountryAverageRating(String country) {
-//        String sql = """
-//                SELECT AVG(rating) FROM blogposts GROUP BY country WHERE country = ? ;""";
-//        return jdbcTemplate.queryForObject(sql, country,Double.class);
-//    }
-
+    @Override
+    public double getCountryAverageRating(String country) {
+        String sql = """
+                SELECT AVG(rating) FROM blogposts WHERE country = ? ;""";
+        return jdbcTemplate.queryForObject(sql,  double.class, country);
+    }
 
 }

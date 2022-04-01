@@ -20,6 +20,9 @@ public class Comment {
         this.comment = comment;
     }
 
+    public Comment() {
+    }
+
     public long getCommentId() {
         return commentId;
     }

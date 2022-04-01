@@ -1,5 +1,7 @@
 INSERT INTO users( user_id, user_name, email, user_password)
-    VALUES (1,'JESS', 'JESS@EMAIL','PASSWORD');
+    VALUES (DEFAULT,'JESS', 'JESS@EMAIL','PASSWORD');
+INSERT INTO users( user_id, user_name, email, user_password)
+    VALUES (DEFAULT,'BIANCA', 'bianca@gmail.com','password');
 
 INSERT INTO blogposts(
     post_id, user_id, post_body, country, rating, top_tip, trip_cost, date_posted)
