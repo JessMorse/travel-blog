@@ -17,7 +17,7 @@ public class Post {
         this.postId = postId;
         this.userId = userId;
         this.postBody = postBody;
-        Country = country;
+        this.Country = country;
         this.rating = rating;
         this.topTip = topTip;
         this.cost = cost;
